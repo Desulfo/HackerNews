@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function News() {
+function News({ news }) {
+  const newsData = new Date(news.time);
+  const authorsURL = `https://hacker-news.firebaseio.com/v0/user/${news.by}.json`;
+  let [karma, setKarma] = useState(null);
+  useEffect(
+    () =>
+      fetch(authorsURL)
+        .then((response) => response.json())
+        .then((data) => {
+          setKarma(data.karma);
+        }),
+    []
+  );
   return (
     <a href="#">
       <article className="News">
         <header className="News__header">
-          <h3>autor + karma</h3> <data>20.10.2020</data>
+          <div>
+            <h3>{news.by}</h3>{' '}
+            <p>
+              <small>karma:</small> {karma}
+            </p>
+          </div>{' '}
+          <data>{newsData.toDateString()}</data>
         </header>
-        <h2>News</h2>
-        <h3>40000 ✩</h3>
+        <h2>{news.title}</h2>
+        <h3>{`${news.score} ✩`}</h3>
       </article>
     </a>
   );

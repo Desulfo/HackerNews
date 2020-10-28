@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import NewsContainer from './organisms/NewsContainer';
@@ -13,3 +13,9 @@ function App() {
 }
 
 export default App;
+
+// [id;
+// by (author);
+// karma-/user/{by}.json
+// time
+// score; url]
