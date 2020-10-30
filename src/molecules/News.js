@@ -4,25 +4,23 @@ function News({ news }) {
   const newsData = new Date(news.time);
   const authorsURL = `https://hacker-news.firebaseio.com/v0/user/${news.by}.json`;
   let [karma, setKarma] = useState(null);
-  useEffect(
-    () =>
-      fetch(authorsURL)
-        .then((response) => response.json())
-        .then((data) => {
-          setKarma(data.karma);
-        }),
-    []
-  );
+  useEffect(() => {
+    fetch(authorsURL)
+      .then((response) => response.json())
+      .then((data) => {
+        setKarma(data.karma);
+      });
+  }, []);
   return (
     <a href="#">
       <article className="News">
         <header className="News__header">
-          <div>
+          <section>
             <h3>{news.by}</h3>{' '}
             <p>
               <small>karma:</small> {karma}
             </p>
-          </div>{' '}
+          </section>{' '}
           <data>{newsData.toDateString()}</data>
         </header>
         <h2>{news.title}</h2>
