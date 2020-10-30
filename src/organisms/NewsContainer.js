@@ -49,21 +49,11 @@ function NewsContainer() {
       let storiesId = await fetchData(topStoriesAPI);
       let idLength = storiesId.length;
       let randomIds = getRandomIds(storiesId, idLength);
-      const randomStories = [];
-      await Promise.all(
-        randomIds.map((ID) =>
-          fetch(newsAPI(ID)).then((response) => response.json())
-        )
-      ).then((data) => {
-        setStories(data);
-      });
-      // randomIds.forEach(async (ID) => {
-      //   const story = await fetchData(newsAPI(ID));
-      //   randomStories.push(story);
-      //   console.log(randomStories);
-      // });
-      // console.log('koniec');
-      // setStories(randomStories);
+      await Promise.all(randomIds.map((ID) => fetchData(newsAPI(ID)))).then(
+        (data) => {
+          setStories(data);
+        }
+      );
       setLoading(false);
     }
     getRandomStories();
