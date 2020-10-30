@@ -62,9 +62,11 @@ function NewsContainer() {
   return (
     <main className="topNews">
       {isLoading && <p>loading...</p>}
-      {stories.map((story) => (
-        <News news={story} key={story.id} />
-      ))}
+      {stories
+        .sort((fistStory, secondStory) => secondStory.score - fistStory.score)
+        .map((story) => (
+          <News news={story} key={story.id} />
+        ))}
     </main>
   );
 }
