@@ -39,8 +39,8 @@ const randomStory = {
 //COMPONENT
 function NewsContainer() {
   //let [error, setError] = useState(null);
-  let [stories, setStories] = useState([]);
-  let [isLoading, setLoading] = useState(false);
+  const [stories, setStories] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   //USE EFFECT
   useEffect(() => {
@@ -49,11 +49,10 @@ function NewsContainer() {
       let storiesId = await fetchData(topStoriesAPI);
       let idLength = storiesId.length;
       let randomIds = getRandomIds(storiesId, idLength);
-      await Promise.all(randomIds.map((ID) => fetchData(newsAPI(ID)))).then(
-        (data) => {
-          setStories(data);
-        }
+      const response = await Promise.all(
+        randomIds.map((ID) => fetchData(newsAPI(ID)))
       );
+      setStories(response);
       setLoading(false);
     }
     getRandomStories();
@@ -61,12 +60,14 @@ function NewsContainer() {
   //RENDERING
   return (
     <main className="topNews">
-      {isLoading && <p>loading...</p>}
-      {stories
-        .sort((fistStory, secondStory) => secondStory.score - fistStory.score)
-        .map((story) => (
-          <News news={story} key={story.id} />
-        ))}
+      {console.log(stories, isLoading)}
+      {isLoading ? (
+        <p>loading...</p>
+      ) : (
+        stories
+          .sort((fistStory, secondStory) => secondStory.score - fistStory.score)
+          .map((story) => <News news={story} key={story.id} />)
+      )}
     </main>
   );
 }
