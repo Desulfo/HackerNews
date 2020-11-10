@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function News({ news }) {
+function News({ news }: any) {
   const newsData = new Date(news.time);
   const authorsURL = `https://hacker-news.firebaseio.com/v0/user/${news.by}.json`;
   const [karma, setKarma] = useState(null);
