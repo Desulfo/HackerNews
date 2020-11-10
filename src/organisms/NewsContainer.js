@@ -60,7 +60,6 @@ function NewsContainer() {
   //RENDERING
   return (
     <main className="topNews">
-      {console.log(stories, isLoading)}
       {isLoading ? (
         <p>loading...</p>
       ) : (

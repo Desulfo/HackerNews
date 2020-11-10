@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 function News({ news }) {
   const newsData = new Date(news.time);
   const authorsURL = `https://hacker-news.firebaseio.com/v0/user/${news.by}.json`;
-  let [karma, setKarma] = useState(null);
+  const [karma, setKarma] = useState(null);
+
   useEffect(() => {
     fetch(authorsURL)
       .then((response) => response.json())
@@ -11,6 +12,7 @@ function News({ news }) {
         setKarma(data.karma);
       });
   }, []);
+
   return (
     <a href="#">
       <article className="News">
@@ -18,7 +20,7 @@ function News({ news }) {
           <section>
             <h3>{news.by}</h3>{' '}
             <p>
-              <small>karma:</small> {karma}
+              <small>karma:</small> {karma || 'loading'}
             </p>
           </section>{' '}
           <data>{newsData.toDateString()}</data>
