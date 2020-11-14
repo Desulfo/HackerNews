@@ -20,7 +20,7 @@ In console:
 
 ```
 git clone https://github.com/Desulfo/HackerNews.git
-cd AboutMe
+cd HackerNews
 npm init
 npm start
 ```
