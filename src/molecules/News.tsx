@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { NewsContainer, Header } from './NewsStyles.tsx';
+import { NewsContainer, Header } from './NewsStyles';
 
 function News({ news }: any) {
   const newsData = new Date(news.time);

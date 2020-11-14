@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import News from '../molecules/News';
-import { TopNews } from './NewsContainerStyles.tsx';
+import { TopNews } from './NewsContainerStyles';
 
 const topStoriesAPI = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
 const newsAPI = (id: number) =>
