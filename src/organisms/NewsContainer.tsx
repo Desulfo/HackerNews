@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import axios from 'axios';
 import News from '../molecules/News';
 
 const topStoriesAPI = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
@@ -9,7 +10,8 @@ const newsAPI = (id: number) =>
 const getRandomNumber = (max: number) =>
   Math.floor(Math.random() * Math.floor(max));
 const fetchData = async (endpoint: string) => {
-  const result = await fetch(endpoint).then((response) => response.json());
+  const result = await axios.get(endpoint).then((response) => response.data);
+  //const result = await fetch(endpoint).then((response) => response.json());
   return result;
 };
 const getRandomIds = (idArray: Array<number>, maxNumber: number) => {
