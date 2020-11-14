@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './App.css';
+import './typography.css';
 import NewsContainer from './organisms/NewsContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <h1>Top Hacker's News</h1>
       <NewsContainer />
     </div>

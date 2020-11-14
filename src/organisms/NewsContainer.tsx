@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import News from '../molecules/News';
+import { TopNews } from './NewsContainerStyles.tsx';
 
 const topStoriesAPI = `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`;
 const newsAPI = (id: number) =>
@@ -53,7 +54,7 @@ function NewsContainer() {
   }, []);
   //RENDERING
   return (
-    <main className="topNews">
+    <TopNews>
       {isLoading ? (
         <p>loading...</p>
       ) : (
@@ -64,7 +65,7 @@ function NewsContainer() {
           )
           .map((story: any) => <News news={story} key={story.id} />)
       )}
-    </main>
+    </TopNews>
   );
 }
 
