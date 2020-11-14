@@ -9,9 +9,10 @@ React site using [Hacker News API](https://github.com/HackerNews/API). So far I'
 
 ## Technologies
 
-- HTML
-- CSS + [styled-component](https://styled-components.com/)
 - React
+- TypeScript
+- [styled-component](https://styled-components.com/)
+- [axios](https://github.com/axios/axios)
 
 ## Setup
 
@@ -32,7 +33,6 @@ _In Progress_
 
 ## Future
 
-- Change into TypeScript
 - Use axios library instead fetch
 - Use StyledComponents
 - Add React-rout for detail view for the news
