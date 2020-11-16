@@ -16,21 +16,19 @@ function News({ news }: any) {
   }, []);
 
   return (
-    <a href="#">
-      <NewsContainer>
-        <Header>
-          <section>
-            <h3>{news.by}</h3>{' '}
-            <p>
-              <small>karma:</small> {karma || 'loading'}
-            </p>
-          </section>{' '}
-          <data>{newsData.toDateString()}</data>
-        </Header>
-        <h2>{news.title}</h2>
-        <h3>{`${news.score} ✩`}</h3>
-      </NewsContainer>
-    </a>
+    <NewsContainer>
+      <Header>
+        <section>
+          <h3>{news.by}</h3>{' '}
+          <p>
+            <small>karma:</small> {karma || 'loading'}
+          </p>
+        </section>{' '}
+        <data>{newsData.toDateString()}</data>
+      </Header>
+      <h2>{news.title}</h2>
+      <h3>{`${news.score} ✩`}</h3>
+    </NewsContainer>
   );
 }
 
