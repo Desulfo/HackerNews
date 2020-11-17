@@ -15,7 +15,7 @@ function NewsContainer({ stories }: any) {
             secondStory.score - fistStory.score
         )
         .map((story: any) => (
-          <Link key={story.id} to={`/${story.id}`}>
+          <Link key={story.id} to={`/${story.id}`} title="See comments">
             <News news={story} />
           </Link>
         ))}
