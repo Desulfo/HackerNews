@@ -70,7 +70,10 @@ function App() {
               )
             }
           />
-          <Route path={`/:id`} component={DetailNews} />
+          <Route
+            path={`/:id`}
+            render={(props) => <DetailNews {...props} stories={stories} />}
+          />
         </Switch>
       </Router>
     </>

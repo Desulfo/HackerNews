@@ -8,43 +8,47 @@ const fetchData = async (endpoint: string) => {
   const result = await axios.get(endpoint).then((response) => response.data);
   return result;
 };
-function DetailNews({ match }: any) {
-  const [story, setStory] = useState({});
-  const [isLoading, setLoading] = useState(false);
-  const newsId: number = match.params.id;
 
-  const getNews = async (id: number) => {
-    setLoading(true);
-    const news = await fetchData(newsAPI(id));
-    setStory(news);
-    setLoading(false);
-  };
-  useEffect(() => {
-    getNews(newsId);
-  }, []);
-
-  return (
-    <main>
-      <Link to="/">wstecz</Link>
-      {isLoading ? <p>loading</p> : <h2>{story.title}</h2>}
-      <h4>by</h4>
-      <a>full news</a>
-      <section>komentarze</section>
-    </main>
-  );
+interface State {
+  title?: string;
+  time?: any;
+  score?: number;
+  by?: string;
+  url?: string;
 }
 
-{
-  /* <Header>
-<section>
-  <h3>{news.by}</h3>{' '}
-  <p>
-    <small>karma:</small> {karma || 'loading'}
-  </p>
-</section>{' '}
-<data>{newsData.toDateString()}</data>
-</Header>
-<h2>{news.title}</h2>
-<h3>{`${news.score} ✩`}</h3> */
+function DetailNews({ match, stories }: any) {
+  const [story, setStory] = useState<State>({});
+  const [isLoading, setLoading] = useState(false);
+  const newsId: number = match.params.id;
+  useEffect(() => {
+    setStory(stories.find((news: any) => news.id == newsId));
+  }, []);
+
+  if (story === undefined) {
+    return (
+      <>
+        <p>ups</p>
+        <Link to="/">wstecz</Link>
+      </>
+    );
+  } else {
+    const newsData = new Date(story.time);
+    const { title, score, by: author, url } = story;
+    return (
+      <main>
+        <Link to="/">wstecz</Link>
+        <h2>{title}</h2>
+        <h3>{`${score} ✩`}</h3>
+        <data>{newsData.toDateString()}</data>
+        <h4>{author}</h4>
+        <p>
+          <small>karma:</small>
+        </p>
+        <a href={url}>full news</a>
+        <section>komentarze</section>
+      </main>
+    );
+  }
 }
 export default DetailNews;
