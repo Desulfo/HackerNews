@@ -38,7 +38,6 @@ function App() {
   const [stories, setStories] = useState([{}]);
   const [isLoading, setLoading] = useState(false);
 
-  //USE EFFECT
   useEffect(() => {
     async function getRandomStories() {
       setLoading(true);

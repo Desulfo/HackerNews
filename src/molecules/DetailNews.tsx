@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Favorite from '../atoms/ManageFavorite';
 import {
   Container,
   StyledLink,
@@ -18,6 +19,7 @@ const fetchData = async (endpoint: string) => {
 };
 
 interface State {
+  id?: string;
   title?: string;
   time?: any;
   score?: number;
@@ -35,6 +37,7 @@ function DetailNews({ match, stories }: any) {
     }
     setStory(stories.find((news: object | any) => news.id === newsId));
   }, []);
+
   let content;
   if (story === undefined) {
     content = <p>ups</p>;
@@ -43,6 +46,7 @@ function DetailNews({ match, stories }: any) {
     const { title, score, by: author, url } = story;
     content = (
       <>
+        <Favorite story={story} />
         <Header>
           <Title>{title}</Title>
           <h3>{`${score} ✩`}</h3>
