@@ -6,6 +6,7 @@ const heart = 'lubię'; //'&#9829;';
 let ListOfFavorite = [JSON.parse(localStorage.getItem('favorite') || '{}')];
 
 const isInListOfFavorite = (story: any) => {
+  console.log(story, ListOfFavorite);
   if (ListOfFavorite) {
     return ListOfFavorite.some((stories: any) => stories.id === story.id)
       ? true
@@ -13,6 +14,9 @@ const isInListOfFavorite = (story: any) => {
   }
 };
 const addToListOfFavorite = (story: any) => {
+  if (ListOfFavorite.some((stories: any) => stories.id === story.id)) {
+    return;
+  }
   ListOfFavorite.push(story);
   localStorage.setItem('favorite', JSON.stringify(ListOfFavorite));
 };
@@ -25,7 +29,10 @@ const removeFromListOfFavorite = (story: any) => {
 function Favorite({ story }: any) {
   const [isFavorite, setFavorite] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(isInListOfFavorite(story));
+    setFavorite(isInListOfFavorite(story) || false);
+  }, []);
 
   const manageFavorite = (e: any) => {
     e.preventDefault();
