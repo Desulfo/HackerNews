@@ -59,7 +59,7 @@ function App() {
       <Router>
         <Switch>
           <Route
-            path="/"
+            path="/HackerNews/"
             exact
             render={() =>
               isLoading ? (
@@ -70,7 +70,7 @@ function App() {
             }
           />
           <Route
-            path={`/:id`}
+            path={`/HackerNews/:id`}
             render={(props) => <DetailNews {...props} stories={stories} />}
           />
         </Switch>

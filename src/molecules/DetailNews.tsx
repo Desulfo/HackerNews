@@ -69,7 +69,7 @@ function DetailNews({ match, stories }: any) {
   }
   return (
     <Container>
-      <StyledLink to="/" title="Back to main site">
+      <StyledLink to="/HackerNews" title="Back to main site">
         Back
       </StyledLink>
       {content}

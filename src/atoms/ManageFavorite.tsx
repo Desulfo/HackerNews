@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 const hollowHeart = 'nie lubię'; //'&#9825;';
 const heart = 'lubię'; //'&#9829;';
 
-let ListOfFavorite = [JSON.parse(localStorage.getItem('favorite') || '{}')];
+let ListOfFavorite: object[] =
+  JSON.parse(localStorage.getItem('favorite')!) || [];
 
 const isInListOfFavorite = (story: any) => {
-  console.log(story, ListOfFavorite);
+  console.log({ eh: story });
   if (ListOfFavorite) {
     return ListOfFavorite.some((stories: any) => stories.id === story.id)
       ? true
@@ -27,12 +28,13 @@ const removeFromListOfFavorite = (story: any) => {
 };
 
 function Favorite({ story }: any) {
+  console.log({ story });
   const [isFavorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    console.log(isInListOfFavorite(story));
+    isInListOfFavorite(story);
     setFavorite(isInListOfFavorite(story) || false);
-  }, []);
+  }, [story]);
 
   const manageFavorite = (e: any) => {
     e.preventDefault();
@@ -41,10 +43,12 @@ function Favorite({ story }: any) {
   const add = (e: any) => {
     e.preventDefault();
     addToListOfFavorite(story);
+    setFavorite(true);
   };
   const remo = (e: any) => {
     e.preventDefault();
     removeFromListOfFavorite(story);
+    setFavorite(false);
   };
 
   return (
