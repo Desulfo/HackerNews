@@ -14,15 +14,17 @@ function NewsContainer({ stories }: any) {
           (fistStory: any, secondStory: any) =>
             secondStory.score - fistStory.score
         )
-        .map((story: any) => (
-          <Link
-            key={story.id}
-            to={`/HackerNews/${story.id}`}
-            title="See comments"
-          >
-            <News news={story} />
-          </Link>
-        ))}
+        .map((story: any) => {
+          return (
+            <Link
+              key={story.id}
+              to={`/HackerNews/${story.id}`}
+              title="See comments"
+            >
+              <News news={story} />
+            </Link>
+          );
+        })}
     </TopNews>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { NewsContainer, Header } from './NewsStyles';
+import { NewsContainer, Header, Title } from './NewsStyles';
 
 function News({ news }: any) {
   const newsData = new Date(news.time);
@@ -26,7 +26,7 @@ function News({ news }: any) {
         </section>{' '}
         <data>{newsData.toDateString()}</data>
       </Header>
-      <h2>{news.title}</h2>
+      <Title>{news.title}</Title>
       <h3>{`${news.score} ✩`}</h3>
     </NewsContainer>
   );

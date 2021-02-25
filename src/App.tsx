@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './typography.css';
@@ -55,8 +55,10 @@ function App() {
 
   return (
     <>
-      <h1>Top Hacker's News</h1>
       <Router>
+        <Link to="/HackerNews/">
+          <h1>Top Hacker's News</h1>
+        </Link>
         <Switch>
           <Route
             path="/HackerNews/"

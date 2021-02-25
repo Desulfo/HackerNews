@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Favorite from '../atoms/ManageFavorite';
-import {
-  Container,
-  StyledLink,
-  Header,
-  Title,
-  Detail,
-  Redirect,
-} from './DetailNewsStyles';
+import { Container, Header, Title, Detail, Redirect } from './DetailNewsStyles';
 
 const newsAPI = (id: number) =>
   `https://hacker-news.firebaseio.com/v0/item/${id}.json`;
@@ -40,7 +34,11 @@ function DetailNews({ match, stories }: any) {
 
   let content;
   if (story === undefined) {
-    content = <p>ups</p>;
+    content = (
+      <Link to="/HackerNews/">
+        Can't load content. Click me to go into main site.
+      </Link>
+    );
   } else {
     const newsData = new Date(story.time);
     const { title, score, by: author, url } = story;
@@ -67,13 +65,6 @@ function DetailNews({ match, stories }: any) {
       </>
     );
   }
-  return (
-    <Container>
-      <StyledLink to="/HackerNews" title="Back to main site">
-        Back
-      </StyledLink>
-      {content}
-    </Container>
-  );
+  return <Container>{content}</Container>;
 }
 export default DetailNews;

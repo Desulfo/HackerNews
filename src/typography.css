@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+}
 h1,
 h2,
 h3,
@@ -7,16 +11,15 @@ h4 {
 }
 h1 {
   font-size: 3rem;
-  margin: 1rem;
+  margin: 3rem;
 }
 h2 {
   font-size: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  line-height: 2.3rem;
 }
 h3 {
-  font-size: 1, 8rem;
-  margin: 0;
+  font-size: 1.1rem;
+  margin: 0.2rem;
 }
 p {
   text-align: center;

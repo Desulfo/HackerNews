@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const Container = styled.main`
   display: flex;
@@ -7,17 +6,6 @@ const Container = styled.main`
   max-width: 850px;
   margin: 0 auto;
   padding: 1.5rem;
-`;
-const StyledLink = styled(Link)`
-  margin-left: auto;
-  text-align: right;
-  border: 1px solid black;
-  padding: 0.5rem;
-  background-color: #db0000;
-  color: white;
-  :hover {
-    background-color: #ad0000;
-  }
 `;
 const Header = styled.header`
   display: flex;
@@ -52,4 +40,4 @@ const Redirect = styled.a`
   }
 `;
 
-export { Container, StyledLink, Header, Title, Detail, Redirect };
+export { Container, Header, Title, Detail, Redirect };
