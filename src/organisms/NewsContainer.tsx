@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import News from '../molecules/News';
 import { TopNews } from './NewsContainerStyles';
 
-//COMPONENT
+const Content = styled(Link)`
+  width: 100%;
+  @media (min-width: 550px) {
+    width: auto;
+  }
+`;
+
 function NewsContainer({ stories }: any) {
-  //RENDERING
   return (
     <TopNews>
       {stories
@@ -16,13 +22,13 @@ function NewsContainer({ stories }: any) {
         )
         .map((story: any) => {
           return (
-            <Link
+            <Content
               key={story.id}
               to={`/HackerNews/${story.id}`}
               title={story.title}
             >
               <News news={story} />
-            </Link>
+            </Content>
           );
         })}
     </TopNews>

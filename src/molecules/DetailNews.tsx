@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Favorite from '../atoms/ManageFavorite';
-import { Container, Header, Title, Detail, Redirect } from './DetailNewsStyles';
+import { Container, Title } from './DetailNewsStyles';
 
 const newsAPI = (id: number) =>
   `https://hacker-news.firebaseio.com/v0/item/${id}.json`;
@@ -40,31 +40,30 @@ function DetailNews({ match, stories }: any) {
       </Link>
     );
   } else {
-    const newsData = new Date(story.time);
+    const newsData = new Date(story.time * 1000);
     const { title, score, by: author, url } = story;
     content = (
       <>
         <Favorite story={story} />
-        <Header>
+        <h4 title="Author">
+          <small>by: </small>
+          {author}
+        </h4>
+        <data>
+          <small>{newsData.toDateString()}</small>
+        </data>
+        <a href={url} title="See full news">
           <Title>{title}</Title>
-          <h3>{`${score} ✩`}</h3>
-        </Header>
-        <Detail>
-          <section>
-            <h4 title="Author">{author}</h4>
-            <p>
-              <small>karma:</small> 123
-            </p>
-          </section>
-          <data>{newsData.toDateString()}</data>
-        </Detail>
-        <Redirect href={url} title="See original news">
-          See full news
-        </Redirect>
-        <section>komentarze</section>
+        </a>
+        <h3>{`${score} ✩`}</h3>
       </>
     );
   }
-  return <Container>{content}</Container>;
+  return (
+    <>
+      <Container>{content}</Container>
+      <section>komentarze</section>
+    </>
+  );
 }
 export default DetailNews;

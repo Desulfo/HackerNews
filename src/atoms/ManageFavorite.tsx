@@ -1,7 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-const hollowHeart = 'nie lubię'; //'&#9825;';
-const heart = 'lubię'; //'&#9829;';
+const FavoriteButton = styled.button`
+  background-color: #fffbe7;
+  color: #fe3e58;
+  border: none;
+  font-size: 1.5rem;
+  height: 80px;
+  width: 50px;
+  position: absolute;
+  right: 20px;
+  top: -20px;
+  padding-top: 30px;
+  -webkit-box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.75);
+  :hover {
+    cursor: pointer;
+  }
+  @media (min-width: 550px) {
+    right: 45px;
+  }
+`;
 
 let ListOfFavorite: object[] =
   JSON.parse(localStorage.getItem('favorite')!) || [];
@@ -45,7 +65,13 @@ function Favorite({ story }: any) {
     removeFromListOfFavorite();
   };
   return (
-    <button onClick={manageFavorite}>{isFavorite ? heart : hollowHeart}</button>
+    <FavoriteButton title="add to favorite" onClick={manageFavorite}>
+      {isFavorite ? (
+        <i className="fas fa-heart"></i>
+      ) : (
+        <i className="far fa-heart"></i>
+      )}
+    </FavoriteButton>
   );
 }
 

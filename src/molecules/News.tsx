@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { NewsContainer, Header, Title } from './NewsStyles';
 
 function News({ news }: any) {
-  const newsData = new Date(news.time);
+  const newsData = new Date(news.time * 1000);
+  //because it's in second and we need milliseconds read more: https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
   const authorsURL = `https://hacker-news.firebaseio.com/v0/user/${news.by}.json`;
   const [karma, setKarma] = useState(null);
 
@@ -21,7 +22,7 @@ function News({ news }: any) {
         <section>
           <h3>{news.by}</h3>{' '}
           <p>
-            <small>karma:</small> {karma || 'loading'}
+            <small>karma: {karma || 'loading'}</small>
           </p>
         </section>{' '}
         <data>{newsData.toDateString()}</data>
