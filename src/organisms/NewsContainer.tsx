@@ -19,7 +19,7 @@ function NewsContainer({ stories }: any) {
             <Link
               key={story.id}
               to={`/HackerNews/${story.id}`}
-              title="See comments"
+              title={story.title}
             >
               <News news={story} />
             </Link>
